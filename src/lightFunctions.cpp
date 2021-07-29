@@ -32,7 +32,7 @@ void danger() {
     pixels.show();
     delay(danger_interval);
     for (int i = 0; i < NUM_PIXELS; i++) {
-        pixels.setPixelColor(i, COLOR_RED);
+        pixels.setPixelColor(i, COLOR_ACCENT);
     }
     pixels.show();
     delay(danger_interval);
