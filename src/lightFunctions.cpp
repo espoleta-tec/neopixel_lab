@@ -10,7 +10,7 @@
 
 #define NUM_PIXELS 16
 
-Adafruit_NeoPixel pixels(NUM_PIXELS, PIXEL_PIN, NEO_RGB + NEO_KHZ800);
+Adafruit_NeoPixel pixels(NUM_PIXELS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 
 void loading() {
@@ -32,7 +32,7 @@ void danger() {
     pixels.show();
     delay(danger_interval);
     for (int i = 0; i < NUM_PIXELS; i++) {
-        pixels.setPixelColor(i, COLOR_ACCENT);
+        pixels.setPixelColor(i, COLOR_RED);
     }
     pixels.show();
     delay(danger_interval);
