@@ -10,6 +10,7 @@ extern Adafruit_NeoPixel pixels;
 void initPixels();
 
 void loading();
+void loadingInParallel();
 
 void danger();
 

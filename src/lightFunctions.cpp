@@ -32,7 +32,7 @@ void danger() {
     pixels.show();
     delay(danger_interval);
     for (int i = 0; i < NUM_PIXELS; i++) {
-        pixels.setPixelColor(i, COLOR_ACCENT);
+        pixels.setPixelColor(i, COLOR_RED);
     }
     pixels.show();
     delay(danger_interval);
@@ -42,5 +42,20 @@ void danger() {
 void initPixels() {
     pixels.begin();
 
+}
+
+
+void loadingInParallel() {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pixels.clear();
+        for (int j = 0; j < 3; j++) {
+            const int colorValue = (j + 1) * 255 / 3;
+            pixels.setPixelColor((i + j) % NUM_PIXELS, pixels.Color(0, 0, colorValue));
+            pixels.setPixelColor((i + j + NUM_PIXELS / 2) % NUM_PIXELS, pixels.Color(0, 0, colorValue));
+        }
+        pixels.show();
+
+        delay(500);
+    }
 }
 

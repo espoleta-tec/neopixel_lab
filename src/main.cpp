@@ -11,5 +11,6 @@ void setup() {
 
 void loop() {
 //    loading();
-    danger();
+//    danger();
+    loadingInParallel();
 }
