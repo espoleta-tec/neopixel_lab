@@ -128,17 +128,34 @@ uint elasticLength(int index, int min, int max) {
 
 
 void elasticAnimation() {
+    pixels.clear();
+    pixels.show();
+    const int maxLength = 10;
+    int baseDelay = 20;
+    const uint32_t color = COLOR_BLUE;
+
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.clear();
-        const int length = elasticLength(i, 4, 9);
-        for (int j = 0; j < length; j++) {
-            const float val = (float) (j + 1) / length * 100;
-            pixels.setPixelColor((i + j) % NUM_PIXELS,
-                                 darken(COLOR_BLUE, val));
+        for (int j = 0; j < maxLength; j++) {
+            const float brightnessPercent = (float) (j + 1) / (float) maxLength * 100 / 25;
+            pixels.setPixelColor((i + j) % NUM_PIXELS, darken(color, brightnessPercent));
         }
         pixels.show();
-        delay(increasingDelay(i, 10));
+        delay(baseDelay);
     }
+
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pixels.clear();
+        const int length = elasticLength(i, 5, maxLength);
+        for (int j = 0; j < length; j++) {
+            const float brightnessPercent = (float) (j + 1) / (float) length * 100 / 50;
+            pixels.setPixelColor((i + j) % NUM_PIXELS,
+                                 darken(color, brightnessPercent));
+        }
+        pixels.show();
+        delay(increasingDelay(i, baseDelay));
+    }
+
 }
 
 
@@ -157,8 +174,5 @@ uint32_t darken(uint32_t color, float percent) {
     b *= percent / 100.0;
 
     uint32_t result = ((uint32_t) r << 16) | ((uint32_t) g << 8) | ((uint32_t) b);
-    Serial.printf("%i\t%i\t%i\n", r, g, b);
-    Serial.println(percent);
     return result;
 }
-
