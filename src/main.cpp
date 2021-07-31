@@ -12,5 +12,8 @@ void setup() {
 void loop() {
 //    loading();
 //    danger();
-    loadingInParallel();
+//    loadingInParallel();
+//    windowsLoading();
+//    easeIn(10, 5);
+    elasticAnimation();
 }

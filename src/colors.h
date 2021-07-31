@@ -6,10 +6,18 @@
 #define NEOPIXELTESTER_COLORS_H
 
 #include "Adafruit_NeoPixel.h"
+#include "lightFunctions.h"
 
-extern const uint32_t COLOR_RED;
-extern const uint32_t COLOR_BLUE;
-extern const uint32_t COLOR_GREEN;
-extern const uint32_t COLOR_ACCENT;
+
+#define COLOR_RED 0xff0000
+#define COLOR_BLUE 0x0000ff
+#define COLOR_GREEN  0x00ff00
+#define COLOR_ORANGE  0xff6600
+#define COLOR_YELLOW  0xffff00
+#define COLOR_PINK  0xc900ff
+#define COLOR_PINK_DARK  0x380047
+#define COLOR_WHITE  0xFFFFFF
+#define COLOR_OFF  0x000000
+
 
 #endif //NEOPIXELTESTER_COLORS_H
