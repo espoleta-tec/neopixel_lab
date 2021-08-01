@@ -63,7 +63,7 @@ void loadingInParallel() {
 }
 
 
-ulong increasingDelay(int index, int minDelay, float constant = 0) {
+ulong increasingDelay(int index, int minDelay) {
     const int halfway = NUM_PIXELS / 2;
 
     int currentBase = abs(halfway - index);
@@ -71,7 +71,7 @@ ulong increasingDelay(int index, int minDelay, float constant = 0) {
         currentBase = 1;
     }
 
-    return minDelay * pow(currentBase, constant);
+    return (float) halfway / (float) currentBase * (float) minDelay;
 }
 
 
@@ -128,16 +128,17 @@ uint elasticLength(int index, int min, int max) {
 
 
 void elasticAnimation() {
+    pixels.clear();
+    pixels.show();
     const int maxLength = 10;
-    int baseDelay = 30;
-    float constant = 0.6;
+    int baseDelay = 20;
     const uint32_t color = COLOR_BLUE;
 
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.clear();
         for (int j = 0; j < maxLength; j++) {
             const float brightnessPercent = (float) (j + 1) / (float) maxLength * 100 / 25;
-            pixels.setPixelColor((i + j) % NUM_PIXELS, darken(color, brightnessPercent));
+            pixels.setPixelColor((NUM_PIXELS + i + j - maxLength / 2) % NUM_PIXELS, darken(color, brightnessPercent));
         }
         pixels.show();
         delay(baseDelay);
@@ -148,11 +149,11 @@ void elasticAnimation() {
         const int length = elasticLength(i, 3, maxLength);
         for (int j = 0; j < length; j++) {
             const float brightnessPercent = (float) (j + 1) / (float) length * 100 / 50;
-            pixels.setPixelColor((i + j) % NUM_PIXELS,
+            pixels.setPixelColor((NUM_PIXELS + i + j - length / 2) % NUM_PIXELS,
                                  darken(color, brightnessPercent));
         }
         pixels.show();
-        delay(increasingDelay(i, baseDelay, constant));
+        delay(increasingDelay(i, baseDelay));
     }
 
 }
