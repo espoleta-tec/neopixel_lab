@@ -138,7 +138,7 @@ void elasticAnimation() {
         pixels.clear();
         for (int j = 0; j < maxLength; j++) {
             const float brightnessPercent = (float) (j + 1) / (float) maxLength * 100 / 25;
-            pixels.setPixelColor((NUM_PIXELS + i + j - maxLength / 2) % NUM_PIXELS, darken(color, brightnessPercent));
+            pixels.setPixelColor((NUM_PIXELS + i + j - maxLength) % NUM_PIXELS, darken(color, brightnessPercent));
         }
         pixels.show();
         delay(baseDelay);
@@ -149,7 +149,7 @@ void elasticAnimation() {
         const int length = elasticLength(i, 3, maxLength);
         for (int j = 0; j < length; j++) {
             const float brightnessPercent = (float) (j + 1) / (float) length * 100 / 50;
-            pixels.setPixelColor((NUM_PIXELS + i + j - length / 2) % NUM_PIXELS,
+            pixels.setPixelColor((NUM_PIXELS + i + j - length) % NUM_PIXELS,
                                  darken(color, brightnessPercent));
         }
         pixels.show();
