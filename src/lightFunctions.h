@@ -19,7 +19,7 @@ void windowsLoading();
 
 void easeIn(int laps = 5, int delayConstant = 5);
 
-ulong increasingDelay(int index, int minDelay);
+ulong increasingDelay(int index, int minDelay, float constant);
 
 uint elasticLength(int index, int min = 2, int max = 5);
 
