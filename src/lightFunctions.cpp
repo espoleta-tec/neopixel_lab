@@ -83,14 +83,14 @@ void windowsLoading() {
     pixels.show();
     const int minDelay = 10;
     for (int i = 0; i < NUM_PIXELS; i++) {
-        pixels.setPixelColor(i, COLOR_ORANGE);
+        pixels.setPixelColor(i, COLOR_ORANGE_PANTONE);
         pixels.show();
         const ulong d = increasingDelay(i, minDelay, 0);
         Serial.println(d);
         delay(d);
     }
     for (int i = 0; i < NUM_PIXELS; i++) {
-        pixels.setPixelColor(i, COLOR_OFF);
+        pixels.setPixelColor(i, COLOR_BLACK);
         pixels.show();
         const ulong d = increasingDelay(i, minDelay, 0);
         Serial.println(d);
@@ -134,12 +134,13 @@ void elasticAnimation() {
     const int minLength = 4, maxLength = 9;
     int baseDelay = 50;
     const float accelerationConstant = 4;
-    const uint32_t color = COLOR_BLUE;
+    const uint32_t color = COLOR_CYAN_AZURE;
+    const int tone = 50;
 
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.clear();
         for (int j = 0; j < maxLength; j++) {
-            const float brightnessPercent = (float) (j + 1) / (float) maxLength * 100 / 25;
+            const float brightnessPercent = (float) (j + 1) / (float) maxLength * 100 / tone;
             pixels.setPixelColor((NUM_PIXELS + i + j - maxLength) % NUM_PIXELS, darken(color, brightnessPercent));
         }
         pixels.show();
@@ -150,7 +151,7 @@ void elasticAnimation() {
         pixels.clear();
         const int length = elasticLength(i, minLength, maxLength);
         for (int j = 0; j < length; j++) {
-            const float brightnessPercent = (float) (j + 1) / (float) length * 100 / 50;
+            const float brightnessPercent = (float) (j + 1) / (float) length * 100 / tone;
             pixels.setPixelColor((NUM_PIXELS + i + j - length) % NUM_PIXELS,
                                  darken(color, brightnessPercent));
         }
@@ -169,7 +170,7 @@ void elasticAnimation() {
  */
 uint32_t darken(uint32_t color, float percent) {
 
-    int r = (COLOR_RED & color) >> 16, g = (COLOR_GREEN & color) >> 8, b = COLOR_BLUE & color;
+    int r = (COLOR_RED & color) >> 16, g = (COLOR_GREEN_COLOR_WHEEL_X11_GREEN & color) >> 8, b = COLOR_BLUE & color;
 
     r *= percent / 100.0;
     g *= percent / 100.0;
