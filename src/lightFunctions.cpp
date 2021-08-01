@@ -134,7 +134,7 @@ void elasticAnimation() {
     const int minLength = 4, maxLength = 9;
     int baseDelay = 50;
     const float accelerationConstant = 4;
-    const uint32_t color = COLOR_CYAN_AZURE;
+    const uint32_t color = COLOR_ACID_GREEN;
     const int tone = 50;
 
     for (int i = 0; i < NUM_PIXELS; i++) {

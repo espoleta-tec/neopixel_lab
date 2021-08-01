@@ -10,15 +10,17 @@ const fileHeader = "//\n" +
     "//\n" +
     "\n" +
     "#ifndef NEOPIXELTESTER_COLORS_H\n" +
-    "#define NEOPIXELTESTER_COLORS_H"
+    "#define NEOPIXELTESTER_COLORS_H\n\n"
 
-const fileFooter = "\n" +
+const fileFooter = "\n\n" +
     "#endif //NEOPIXELTESTER_COLORS_H\n"
 
 const file = fileHeader +
     colors.map((color) => {
-        return `#define COLOR_${color.name.split(/[ -]/).join('_')
-            .split(/[( )]/).join('')
+        return `#define COLOR_${color.name
+            .split(/[ -]/).join('_')
+            .split('\'').join('_')
+            .split(/[()\/]/).join('')
             .toUpperCase()} 0x${color.hex.slice(1)}`
     }).join('\n')
     + fileFooter
