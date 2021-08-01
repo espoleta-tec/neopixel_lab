@@ -63,15 +63,18 @@ void loadingInParallel() {
 }
 
 
-ulong increasingDelay(int index, int minDelay) {
+ulong increasingDelay(int index, int minDelay, float constant = 1) {
     const int halfway = NUM_PIXELS / 2;
 
-    int currentBase = abs(halfway - index);
-    if (!currentBase) {
-        currentBase = 1;
+    int dx = abs(halfway - index);
+    if (!dx) {
+        dx = 1;
+    }
+    if (!constant) {
+        constant = 1;
     }
 
-    return (float) halfway / (float) currentBase * (float) minDelay;
+    return ((float) constant / (float) dx) * (float) minDelay;
 }
 
 
@@ -82,14 +85,14 @@ void windowsLoading() {
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.setPixelColor(i, COLOR_ORANGE);
         pixels.show();
-        const ulong d = increasingDelay(i, minDelay);
+        const ulong d = increasingDelay(i, minDelay, 0);
         Serial.println(d);
         delay(d);
     }
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.setPixelColor(i, COLOR_OFF);
         pixels.show();
-        const ulong d = increasingDelay(i, minDelay);
+        const ulong d = increasingDelay(i, minDelay, 0);
         Serial.println(d);
         delay(d);
     }
@@ -128,10 +131,9 @@ uint elasticLength(int index, int min, int max) {
 
 
 void elasticAnimation() {
-    pixels.clear();
-    pixels.show();
-    const int maxLength = 10;
-    int baseDelay = 20;
+    const int minLength = 4, maxLength = 9;
+    int baseDelay = 50;
+    const float accelerationConstant = 4;
     const uint32_t color = COLOR_BLUE;
 
     for (int i = 0; i < NUM_PIXELS; i++) {
@@ -146,14 +148,14 @@ void elasticAnimation() {
 
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.clear();
-        const int length = elasticLength(i, 3, maxLength);
+        const int length = elasticLength(i, minLength, maxLength);
         for (int j = 0; j < length; j++) {
             const float brightnessPercent = (float) (j + 1) / (float) length * 100 / 50;
             pixels.setPixelColor((NUM_PIXELS + i + j - length) % NUM_PIXELS,
                                  darken(color, brightnessPercent));
         }
         pixels.show();
-        delay(increasingDelay(i, baseDelay));
+        delay(increasingDelay(i, baseDelay, accelerationConstant));
     }
 
 }
@@ -175,4 +177,18 @@ uint32_t darken(uint32_t color, float percent) {
 
     uint32_t result = ((uint32_t) r << 16) | ((uint32_t) g << 8) | ((uint32_t) b);
     return result;
+}
+
+
+void charging() {
+    pixels.clear();
+    pixels.show();
+    for (int i = 0; i <= NUM_PIXELS / 2; i++) {
+        const int dx = abs(NUM_PIXELS / 2 - i);
+        const uint32_t color = darken(COLOR_BLUE, 10);
+        pixels.setPixelColor((NUM_PIXELS / 2 - dx) % NUM_PIXELS, color);
+        pixels.setPixelColor((NUM_PIXELS / 2 + dx) % NUM_PIXELS, color);
+        pixels.show();
+        delay(300);
+    }
 }

@@ -16,4 +16,5 @@ void loop() {
 //    windowsLoading();
 //    easeIn(10, 5);
     elasticAnimation();
+//    charging();
 }

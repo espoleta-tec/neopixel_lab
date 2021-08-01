@@ -19,12 +19,14 @@ void windowsLoading();
 
 void easeIn(int laps = 5, int delayConstant = 5);
 
-ulong increasingDelay(int index, int minDelay, float constant);
+ulong increasingDelay(int index, int minDelay, float);
 
 uint elasticLength(int index, int min = 2, int max = 5);
 
 void elasticAnimation();
 
 uint32_t darken(uint32_t color, float percent);
+
+void charging();
 
 #endif //NEOPIXELTESTER_LIGHTFUNCTIONS_H
