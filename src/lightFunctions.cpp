@@ -6,12 +6,14 @@
 #include "lightFunctions.h"
 #include "colors.h"
 #include <bitset>
+#include "RTClib.h"
 
 #define PIXEL_PIN 4
 
 #define NUM_PIXELS 16
 
 Adafruit_NeoPixel pixels(NUM_PIXELS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+RTC_DS1307 RTC;
 
 
 void loading() {
@@ -133,9 +135,9 @@ uint elasticLength(int index, int min, int max) {
 void elasticAnimation() {
     const int minLength = 4, maxLength = 9;
     int baseDelay = 50;
-    const float accelerationConstant = 4;
-    const uint32_t color = COLOR_VERMILION;
-    const int tone = 50;
+    const float accelerationConstant = 3;
+    const uint32_t color = COLOR_WHITE;
+    const int tone = 99;
 
     for (int i = 0; i < NUM_PIXELS; i++) {
         pixels.clear();
@@ -191,5 +193,26 @@ void charging() {
         pixels.setPixelColor((NUM_PIXELS / 2 + dx) % NUM_PIXELS, color);
         pixels.show();
         delay(300);
+    }
+}
+
+
+void hour() {
+    DateTime now = RTC.now();
+    int hour = now.hour();
+    int minutes = now.minute();
+
+    pixels.clear();
+    pixels.setPixelColor(hour / 24 * NUM_PIXELS, COLOR_TURQUOISE_BLUE);
+    pixels.setPixelColor(minutes / 60 * NUM_PIXELS, COLOR_MAGENTA_PANTONE);
+
+    delay(1000);
+}
+
+
+void initClock() {
+    RTC.begin();
+    if (!RTC.isrunning()) {
+        Serial.println("RTC is NOT running!");
     }
 }

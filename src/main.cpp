@@ -6,6 +6,7 @@
 void setup() {
     Serial.begin(115200);
     initPixels();
+    initClock();
 }
 
 
@@ -15,6 +16,7 @@ void loop() {
 //    loadingInParallel();
 //    windowsLoading();
 //    easeIn(10, 5);
-    elasticAnimation();
+//    elasticAnimation();
 //    charging();
+    hour();
 }

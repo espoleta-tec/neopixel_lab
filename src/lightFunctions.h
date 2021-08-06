@@ -29,4 +29,8 @@ uint32_t darken(uint32_t color, float percent);
 
 void charging();
 
+void initClock();
+
+void hour();
+
 #endif //NEOPIXELTESTER_LIGHTFUNCTIONS_H
