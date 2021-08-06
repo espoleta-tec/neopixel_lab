@@ -199,8 +199,8 @@ void hour() {
     int hour = now.hour();
     int minutes = now.minute();
 
-    Serial.print(hour);
-    Serial.print(minutes);
+    Serial.println(hour);
+    Serial.println(minutes);
 
     pixels.clear();
     pixels.setPixelColor(hour / 24 * NUM_PIXELS, COLOR_ORANGE_PANTONE);
