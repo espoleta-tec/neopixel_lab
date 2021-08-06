@@ -5,6 +5,12 @@
 #ifndef NEOPIXELTESTER_LIGHTFUNCTIONS_H
 #define NEOPIXELTESTER_LIGHTFUNCTIONS_H
 
+#include <Adafruit_NeoPixel.h>
+#include "colors.h"
+#include <bitset>
+#include "RTClib.h"
+
+
 extern Adafruit_NeoPixel pixels;
 
 void initPixels();

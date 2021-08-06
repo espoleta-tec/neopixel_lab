@@ -2,11 +2,8 @@
 // Created by lazaroofarrill on 7/28/21.
 //
 
-#include <Adafruit_NeoPixel.h>
 #include "lightFunctions.h"
-#include "colors.h"
-#include <bitset>
-#include "RTClib.h"
+
 
 #define PIXEL_PIN 4
 

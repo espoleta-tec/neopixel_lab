@@ -1,10 +1,13 @@
+#include <Wire.h>
 #include "Arduino.h"
-#include "Adafruit_NeoPixel.h"
 #include "lightFunctions.h"
 
 
 void setup() {
     Serial.begin(115200);
+    if (!Wire.begin()) {
+        Serial.println("Failed to init i2c interface");
+    }
     initPixels();
     initClock();
 }
