@@ -205,6 +205,7 @@ void hour() {
     pixels.clear();
     pixels.setPixelColor(hour / 24 * NUM_PIXELS, COLOR_TURQUOISE_BLUE);
     pixels.setPixelColor(minutes / 60 * NUM_PIXELS, COLOR_MAGENTA_PANTONE);
+    pixels.show();
 
     delay(1000);
 }
@@ -215,4 +216,9 @@ void initClock() {
     if (!RTC.isrunning()) {
         Serial.println("RTC is NOT running!");
     }
+}
+
+
+void moonPhase() {
+    uint32_t timestamp = RTC.now().unixtime();
 }

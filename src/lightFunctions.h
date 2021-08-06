@@ -33,4 +33,6 @@ void initClock();
 
 void hour();
 
+void moonPhase();
+
 #endif //NEOPIXELTESTER_LIGHTFUNCTIONS_H
