@@ -194,6 +194,9 @@ void charging() {
 }
 
 
+bool blink = true;
+
+
 void hour() {
     DateTime now = RTC.now();
     int hour = now.hour();
@@ -210,7 +213,9 @@ void hour() {
 
     pixels.clear();
     pixels.setPixelColor(hourPixel, COLOR_BLUE);
-    pixels.setPixelColor(minutesPixel, COLOR_GREEN_COLOR_WHEEL_X11_GREEN);
+    if (blink) {
+        pixels.setPixelColor(minutesPixel, COLOR_GREEN_COLOR_WHEEL_X11_GREEN);
+    }
     pixels.setPixelColor(secondsPixel, COLOR_ORANGE_PANTONE);
     pixels.show();
 
