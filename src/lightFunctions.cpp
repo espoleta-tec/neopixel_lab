@@ -202,9 +202,15 @@ void hour() {
     Serial.println(hour);
     Serial.println(minutes);
 
+    int hourPixel = int((float) hour / (float) 24 * NUM_PIXELS);
+    int minutesPixel = int((float) minutes / (float) 60 * NUM_PIXELS);
+
+    Serial.println(hourPixel);
+    Serial.println(minutesPixel);
+
     pixels.clear();
-    pixels.setPixelColor((float) hour / (float) 24 * NUM_PIXELS, COLOR_BLUE);
-    pixels.setPixelColor((float) minutes / (float) 60 * NUM_PIXELS, COLOR_GREEN_COLOR_WHEEL_X11_GREEN);
+    pixels.setPixelColor(hourPixel, COLOR_BLUE);
+    pixels.setPixelColor(minutesPixel, COLOR_GREEN_COLOR_WHEEL_X11_GREEN);
     pixels.show();
 
     delay(1000);
