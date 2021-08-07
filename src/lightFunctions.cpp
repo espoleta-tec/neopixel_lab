@@ -207,6 +207,7 @@ void hour() {
 
     Serial.println(hourPixel);
     Serial.println(minutesPixel);
+    Serial.println();
 
     pixels.clear();
     pixels.setPixelColor(hourPixel, COLOR_BLUE);
