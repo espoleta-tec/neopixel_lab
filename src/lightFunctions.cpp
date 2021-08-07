@@ -198,20 +198,20 @@ void hour() {
     DateTime now = RTC.now();
     int hour = now.hour();
     int minutes = now.minute();
+    int seconds = now.second();
 
     Serial.println(hour);
     Serial.println(minutes);
 
     int hourPixel = int((float) hour / (float) 24 * NUM_PIXELS);
     int minutesPixel = int((float) minutes / (float) 60 * NUM_PIXELS);
+    int secondsPixel = int((float) secondsPixel / (float) 60 * NUM_PIXELS);
 
-    Serial.println(hourPixel);
-    Serial.println(minutesPixel);
-    Serial.println();
 
     pixels.clear();
     pixels.setPixelColor(hourPixel, COLOR_BLUE);
     pixels.setPixelColor(minutesPixel, COLOR_GREEN_COLOR_WHEEL_X11_GREEN);
+    pixels.setPixelColor(secondsPixel, COLOR_ORANGE_PANTONE);
     pixels.show();
 
     delay(1000);
