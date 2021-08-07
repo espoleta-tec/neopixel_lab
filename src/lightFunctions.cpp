@@ -208,7 +208,7 @@ void hour() {
 
     int hourPixel = int((float) hour / (float) 24 * NUM_PIXELS);
     int minutesPixel = int((float) minutes / (float) 60 * NUM_PIXELS);
-    int secondsPixel = int((float) secondsPixel / (float) 60 * NUM_PIXELS);
+    int secondsPixel = int((float) seconds / (float) 60 * NUM_PIXELS);
 
 
     pixels.clear();
