@@ -206,9 +206,9 @@ void hour() {
     Serial.println(hour);
     Serial.println(minutes);
 
-    int hourPixel = int((float) hour / (float) 24 * NUM_PIXELS);
-    int minutesPixel = int((float) minutes / (float) 60 * NUM_PIXELS);
-    int secondsPixel = int((float) seconds / (float) 60 * NUM_PIXELS);
+    int hourPixel = NUM_PIXELS - int((float) hour / (float) 24 * NUM_PIXELS);
+    int minutesPixel = NUM_PIXELS - int((float) minutes / (float) 60 * NUM_PIXELS);
+    int secondsPixel = NUM_PIXELS - int((float) seconds / (float) 60 * NUM_PIXELS);
 
 
     pixels.clear();
